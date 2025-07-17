@@ -1,0 +1,17 @@
+Crea el entorno virtual:
+python3 -m venv venv
+
+lanzar el entorno:
+source venv/bin/activate 
+
+lanzar:
+uvicorn app.main:app
+
+para instalar paquetes:
+pip install passlib
+
+para anadir esos paquetes a requirements.txt:
+pip freeze > requirements.txt
+
+para instalar todos los paquetes de requirements.txt:
+pip install -r requirements.txt
