@@ -11,8 +11,8 @@ from .user_pack_shema import UserPackCreateSchema, UserPackUpdateSchema, UserPac
 from .users_shema import (
     UserResponseSchema,
     UserSchema,
-    UserCreateSchema,
-    UserUpdateSchema,
+    user_createSchema,
+    user_updateSchema,
 )
 
 from .base_shema import BaseFilterShema

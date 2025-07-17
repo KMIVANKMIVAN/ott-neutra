@@ -18,14 +18,14 @@ async def get_enterprise_by_filter(filters: BaseFilterShema) -> List[EnterpriseM
         statement = select(EnterpriseModel)
         if filters.status is not None:
             statement = statement.where(EnterpriseModel.status == filters.status)
-        if filters.userCreate is not None:
-            statement = statement.where(EnterpriseModel.userCreate == filters.userCreate)
-        if filters.userUpdate is not None:
-            statement = statement.where(EnterpriseModel.userUpdate == filters.userUpdate)
-        if filters.dateCreate is not None:
-            statement = statement.where(EnterpriseModel.dateCreate == filters.dateCreate)
-        if filters.dateUpdate is not None:
-            statement = statement.where(EnterpriseModel.dateUpdate == filters.dateUpdate)
+        if filters.user_create is not None:
+            statement = statement.where(EnterpriseModel.user_create == filters.user_create)
+        if filters.user_update is not None:
+            statement = statement.where(EnterpriseModel.user_update == filters.user_update)
+        if filters.date_create is not None:
+            statement = statement.where(EnterpriseModel.date_create == filters.date_create)
+        if filters.date_update is not None:
+            statement = statement.where(EnterpriseModel.date_update == filters.date_update)
 
         limit = filters.limit or 10
         offset = ((filters.page or 1) - 1) * limit

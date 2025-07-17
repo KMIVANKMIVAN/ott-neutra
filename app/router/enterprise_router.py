@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query, Body, Path
+from fastapi import APIRouter, Query, Body, Path, Depends
 from typing import List
 
 from app.services import enterpriseService
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/enterprises", tags=["enterprises"])
 
 
 @router.get(
-    "/all",
+    "/",
     response_model=List[EnterpriseResponseSchema],
     summary="API para obtener todas las empresas",
 )
@@ -21,13 +21,13 @@ async def get_enterprise_all():
     return await enterpriseService.get_enterprise_all()
 
 
-@router.post(
-    "/by-filter",
+@router.get(
+    "/search",
     response_model=List[EnterpriseResponseSchema],
-    summary="API para obtener empresas por filtro",
+    summary="API para obtener empresas por filtro (query params)",
 )
 async def get_enterprises_by_filter(
-    filtros: BaseFilterShema = Body(..., description="Filtros para buscar empresas")
+    filtros: BaseFilterShema = Depends()
 ):
     return await enterpriseService.get_enterprises_by_filter(filtros)
 
@@ -38,14 +38,13 @@ async def get_enterprises_by_filter(
     summary="API para obtener empresa por ID",
 )
 async def get_enterprise_by_id(
-    id: int = Path(..., description="ID de la empresa")  # ✅ correcto
+    id: int = Path(..., description="ID de la empresa")
 ):
     return await enterpriseService.get_enterprise_by_id(id)
 
 
-
 @router.post(
-    "/crear",
+    "/",
     response_model=EnterpriseResponseSchema,
     summary="API para crear una nueva empresa",
 )
@@ -58,7 +57,7 @@ async def post_enterprise_create(
 
 
 @router.patch(
-    "/update/{id}",
+    "/{id}",
     response_model=EnterpriseResponseSchema,
     summary="API para actualizar una empresa",
 )

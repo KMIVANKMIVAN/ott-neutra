@@ -18,14 +18,14 @@ class UserResponseSchema(BaseAuditSchema):
     ci: str
 
 
-class UserCreateSchema(BaseModel):
+class user_createSchema(BaseModel):
     email: EmailStr
     name: str = Field(..., min_length=1)
     ci: str = Field(..., min_length=5)
     enterprise_id: int
 
 
-class UserUpdateSchema(BaseModel):
+class user_updateSchema(BaseModel):
     name: Optional[str] = None
     ci: Optional[str] = None
     enterprise_id: Optional[int] = None

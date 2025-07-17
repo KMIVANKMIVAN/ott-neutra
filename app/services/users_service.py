@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from passlib.context import CryptContext
 from app.repository import userRepository
-from app.schemas import UserResponseSchema, BaseFilterShema, UserCreateSchema
+from app.schemas import UserResponseSchema, BaseFilterShema, user_createSchema
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -25,8 +25,8 @@ async def get_user_by_email(email: str) -> UserResponseSchema:
     return UserResponseSchema(**user_data)
 
 
-async def post_user_create(userCreate: UserCreateSchema) -> UserResponseSchema:
-    user_data = await userRepository.post_user_create(userCreate)
+async def post_user_create(user_create: user_createSchema) -> UserResponseSchema:
+    user_data = await userRepository.post_user_create(user_create)
     return UserResponseSchema(**user_data)
 
 

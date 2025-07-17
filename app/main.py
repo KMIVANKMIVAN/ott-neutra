@@ -19,8 +19,8 @@ app.add_middleware(
 )
 
 # app.include_router(users)
-app.include_router(users, prefix="/api")
-app.include_router(enterprises, prefix="/api")
+app.include_router(users)
+app.include_router(enterprises)
 
 
 # Este bloque se ejecuta al iniciar la app
