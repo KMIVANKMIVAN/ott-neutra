@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query, Body
+from fastapi import APIRouter, Query, Body, Path
 from typing import List
 
 from app.services import enterpriseService
@@ -38,9 +38,10 @@ async def get_enterprises_by_filter(
     summary="API para obtener empresa por ID",
 )
 async def get_enterprise_by_id(
-    id: int = Query(..., description="ID de la empresa")
+    id: int = Path(..., description="ID de la empresa")  # ✅ correcto
 ):
     return await enterpriseService.get_enterprise_by_id(id)
+
 
 
 @router.post(

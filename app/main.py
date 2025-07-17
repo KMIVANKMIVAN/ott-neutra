@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.router import users
+from app.router import users, enterprises
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import create_db_and_tables
 import app.model
@@ -20,6 +20,7 @@ app.add_middleware(
 
 # app.include_router(users)
 app.include_router(users, prefix="/api")
+app.include_router(enterprises, prefix="/api")
 
 
 # Este bloque se ejecuta al iniciar la app
